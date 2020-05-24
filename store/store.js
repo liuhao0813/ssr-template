@@ -8,7 +8,6 @@ const initialCountState = {
 
 const ADD = 'ADD'
 function countReducer(state = initialCountState, action) {
-    console.log(state, action)
     switch (action.type) {
         case ADD:
             return {
@@ -23,7 +22,6 @@ function countReducer(state = initialCountState, action) {
 const UPDATE = 'UPDATE'
 const initialUserState = { username: "hello" }
 function userReducer(state = initialUserState, action) {
-    console.log(state, action)
     switch (action.type) {
         case UPDATE:
             return {
