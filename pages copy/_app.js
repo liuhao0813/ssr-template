@@ -2,8 +2,6 @@ import App from 'next/app'
 import { Provider } from 'react-redux'
 import withRedux from '../lib/with-redux'
 
-import Layout from '../components/Layout'
-
 
 class MyApp extends App {
 
@@ -22,9 +20,7 @@ class MyApp extends App {
         const { Component, pageProps, reduxStore } = this.props
         return (
             <Provider store={reduxStore}>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
+                <Component {...pageProps} />
             </Provider>
         )
     }
