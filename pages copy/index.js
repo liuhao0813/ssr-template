@@ -10,6 +10,11 @@ const {publicRuntimeConfig} = getConfig()
 
 const Index = ({username, count, add, rename}) => {
 
+    useEffect(()=>{
+        console.log('aaaaaa')
+        axios.get('/api/user/info').then(resp => console.log(resp))
+    }, [])
+
     return (
         <>
         <h1>username: {username}, count: {count}</h1>
@@ -20,17 +25,22 @@ const Index = ({username, count, add, rename}) => {
 }
 
 
-Index.getInitialProps =  async() => {
+Index.getInitialProps =  async({reduxStore}) => {
+    reduxStore.dispatch(update('张三'))
     return {}
 }
 
 export default connect(
     (state) => {
         return {
+            username: state.user.username,
+            count: state.counter.count
         }
     }, 
     (dispatch) => {
         return {
+            add: (num)=>dispatch({type: 'ADD', num}),
+            rename: (name)=>dispatch({type: 'UPDATE', name})
         }
     }
 )(Index)
