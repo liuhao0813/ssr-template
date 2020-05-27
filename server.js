@@ -2,9 +2,11 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const next = require('next')
 const session = require('koa-session')
+const koaBody= require('koa-body')
 const Redis = require('ioredis')
 
 const auth = require('./server/auth')
+const api = require('./server/api')
 
 const RedisSessionStore = require('./server/session-store')
 
@@ -27,7 +29,7 @@ app.prepare().then(() => {
     }
 
     server.use(session(SESSION_CONFIG, server))
-
+    server.use(koaBody())
 
     router.get('/api/user/info', async ctx => {
         const user = ctx.session.userInfo
@@ -43,7 +45,7 @@ app.prepare().then(() => {
 
 
     auth(server)
-
+    api(server)
     
     server.use(router.routes())
 

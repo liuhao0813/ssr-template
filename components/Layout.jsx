@@ -6,7 +6,8 @@ import getConfig from 'next/config'
 import Container from './Container'
 import { logout } from '../store/store'
 import Axios from 'axios'
-import { withRouter } from 'next/router'
+import { withRouter, Router } from 'next/router'
+import Link from 'next/Link'
 
 const { Header, Content, Footer } = Layout
 const { publicRuntimeConfig } = getConfig()
@@ -20,19 +21,16 @@ const githubLogoStyle = {
 }
 
 function MyLayout({ children, user, logout, router }) {
+    const urlQuery = router.query && router.query.query
+    const [search, setSearch] = useState(urlQuery || '')
 
-    const [search, setSearch] = useState('')
+    const handleSearchChange = useCallback((event) => {
+        setSearch(event.target.value)
+    }, [setSearch])
 
-    const handleSearchChange = useCallback(
-        (event) => {
-            setSearch(event.target.value)
-        },
-        [setSearch],
-    )
-
-    const handleSearch = useCallback(
-        () => { }
-    )
+    const handleSearch = useCallback(() => {
+        router.push(`/search?query=${search}`)
+    }, [search])
 
     const handleLogout = useCallback(() => {
         logout()
@@ -68,7 +66,9 @@ function MyLayout({ children, user, logout, router }) {
 
                     <div className="header-left">
                         <div className="logo">
-                            <GithubOutlined style={githubLogoStyle} />
+                            <Link href="/">
+                                <GithubOutlined style={githubLogoStyle} />
+                            </Link>
                         </div>
                         <div>
                             <Input.Search placeholder="搜索仓库"
