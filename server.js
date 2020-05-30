@@ -56,7 +56,7 @@ app.prepare().then(() => {
     })
 
     server.listen(3000, () => {
-        console.log("kos server listening to 3000")
+        console.log("koa server listening to 3000")
     })
 })
 

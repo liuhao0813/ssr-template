@@ -18,6 +18,7 @@ module.exports = server => {
                 ctx.url.replace('/github/', '/'),
                 ctx.request.body||{},
                 headers)
+            console.log(result)
             ctx.status = result.status
             ctx.body = result.data
         } else {

@@ -123,6 +123,9 @@ function MyLayout({ children, user, logout, router }) {
                 .ant-layout-header {
                     padding:0;
                 }
+                .ant-layout-content{
+                    background-color: white;
+                }
             `}</style>
         </Layout>
     )
