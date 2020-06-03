@@ -10,10 +10,9 @@ const {publicRuntimeConfig} = getConfig()
 
 const Index = ({username, count, add, rename}) => {
 
-    useEffect(()=>{
-        console.log('aaaaaa')
-        axios.get('/api/user/info').then(resp => console.log(resp))
-    }, [])
+    // useEffect(()=>{
+    //     axios.get('/api/user/info').then(resp => console.log(resp))
+    // }, [])
 
     return (
         <>
